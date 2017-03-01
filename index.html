@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js demo-4">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Captured Magazine</title>
+		<meta name="description" content="Bookblock: A Content Flip Plugin - Demo 4" />
+		<meta name="keywords" content="javascript, jquery, plugin, css3, flip, page, 3d, booklet, book, perspective" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/animate.min.css" rel="stylesheet">
+		<link href="css/prettyPhoto.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<link href="css/responsive.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet">
+		<!-- custom demo style -->
+		<link rel="stylesheet" type="text/css" href="css/demo4.css" />
+		<script src="js/modernizr.custom.js"></script>
+		<style>
+			.margin{
+				margin-left: 25px;
+				margin-right: 25px;
+			}
+			.imgConstraint {
+				display: block !important;
+				max-height:480px !important;
+				width: auto !important;
+				height: auto !important;
+			}
+			@-webkit-keyframes greenPulse {
+				from { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+				50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+				to { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+			}
+			.radiate {
+				-webkit-animation-name: greenPulse;
+				-webkit-animation-duration: 2s;
+				-webkit-animation-iteration-count: infinite;
+			}
+		</style>
+	</head>
+	<body>
+		<header id="header" style="position:fixed;margin-bottom:-100px; z-index:999; width:100%;">
+        
+			<nav class="navbar navbar-inverse collapse navbar-collapse" data-role="banner">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index.html" style="color:#E99C28;font-size:50px;font-family: 'Montserrat', sans-serif;">
+							<!--<img src="images/demo4/logo.jpg" alt="logo">-->
+							Captured
+						</a>
+					</div>
+					
+					<div class="collapse navbar-collapse navbar-right">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="index.html" id="homeLink"><b>Home</b></a></li>
+							<li><a href="about.html"><b>About Us</b></a></li>							
+							<li>
+								<a href="assets/Captured2016_website.pdf" download="assets/Captured2016_website.pdf">
+									<b><span class="glyphicon glyphicon-download-alt"></span> Download PDF</b>
+								</a>
+							</li>									
+						</ul>
+					</div>
+				</div><!--/.container-->
+			</nav><!--/nav-->
+			
+		</header><!--/header-->
+
+		<div class="container_theme margin">
+			<div class="bb-custom-wrapper">
+				
+				<div id="bb-bookblock" class="bb-bookblock">
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="assets/high/Captured2016_website-page-01.jpg" class="img-responsive imgConstraint" />
+						</div>
+					</div>
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="assets/high/Captured2016_website-page-02.jpg" class="img-responsive imgConstraint" />
+						</div>
+					</div>
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="assets/high/Captured2016_website-page-03.jpg" class="img-responsive imgConstraint" />
+						</div>
+					</div>
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="assets/high/Captured2016_website-page-04.jpg" class="img-responsive imgConstraint" />
+						</div>
+					</div>
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="assets/high/Captured2016_website-page-05.jpg" class="img-responsive imgConstraint" />
+						</div>
+					</div>
+				</div>
+
+				<nav>
+					<a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first">First page</a>
+					<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+					<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+					<a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>
+					&nbsp;
+					<button class="btn btn-lg btn-default" onclick="toggleFullScreen()" style="position:absolute;" data-toggle="tooltip" data-placement="right" title="Enter/Exit Fullscreen">
+						<span class="glyphicon glyphicon-fullscreen"></span>
+					</button>
+				</nav>
+				<audio id="pageFlipSound">
+					<source src="sound/sound1.wav" type="audio/wav">
+				</audio>
+			</div>
+
+		</div><!-- /container_theme -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="js/jquerypp.custom.js"></script>
+		<script src="js/jquery.bookblock.js"></script>
+		
+		<script>
+		
+		$(document).ready(function(){
+			
+			//initializing tooltip
+			$('[data-toggle="tooltip"]').tooltip(); 
+			
+			//setting pages 6-68
+			var link = "";
+			var left
+			var parent = $("#bb-bookblock");
+			for(var i=6;i<=68;i++){
+				var flag = false;
+				var direction = "left";
+				var leftAddon = "";
+				var rightAddon = "";
+				if(i == 15){
+					link = "http://blackwomeninmusic.tumblr.com/";
+					flag = true;
+					direction = "left";
+				}else if(i == 16){
+					link = "http://90stocontemporize.tumblr.com/";
+					flag = true;
+					direction = "right";
+				}else if(i == 28){
+					link = "http://fashion2523.tumblr.com/";
+					flag = true;
+					direction = "left";
+				}else if(i == 45){
+					link = "http://2521pop.tumblr.com/";
+					flag = true;
+					direction = "left";
+				}else if(i == 53){
+					link = "http://capturedjournal.com/2016/presenatations";
+					flag = true;
+					direction = "right";
+				}else if(i == 65){
+					link = "http://tvrevelation.tumblr.com/";
+					flag = true;
+					direction = "left";
+				}
+				if(flag){
+					if(direction == "left"){
+						leftAddon = "<div class='pull-left'><a href='"+link+"' style='color:white;' class='btn btn-success btn-circle radiate' target='_blank'>View Blog <span class='glyphicon glyphicon-new-window'></span></a>&nbsp;</div>";
+						rightAddon = "<div class='pull-right' style='visibility:hidden;'><a href='"+link+"' style='color:white;' class='btn btn-success btn-circle radiate' target='_blank'>View Blog <span class='glyphicon glyphicon-new-window'></span></a>&nbsp;</div>";
+					}else if(direction == "right"){
+						leftAddon = "<div class='pull-left' style='visibility:hidden;'><a href='"+link+"' style='color:white;' class='btn btn-success btn-circle radiate' target='_blank'>View Blog <span class='glyphicon glyphicon-new-window'></span></a>&nbsp;</div>";
+						rightAddon = "<div class='pull-right'><a href='"+link+"' style='color:white;' class='btn btn-success btn-circle radiate' target='_blank'>View Blog <span class='glyphicon glyphicon-new-window'></span></a>&nbsp;</div>";
+					}
+				}
+				var item = "<div class='bb-item'><div class='bb-custom-side'>"+leftAddon+"<img src='assets/high/Captured2016_website-page-0"+i+".jpg' class='img-responsive imgConstraint' />"+rightAddon+"</div></div>";
+				var itemPackage = parent.html()+item;
+				parent.html(leftAddon+itemPackage+rightAddon);
+				Page.init();
+			}
+			
+			//
+			setInterval(function(){
+				if(!((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height))){
+					console.log("not");
+					$("#header").show();
+					$(".img-responsive").addClass("imgConstraint");
+					if (document.exitFullscreen) {
+						console.log("exit fullscreen");
+						document.exitFullscreen();
+					} else if (document.msExitFullscreen) {
+						document.msExitFullscreen();
+					} else if (document.mozCancelFullScreen) {
+						document.mozCancelFullScreen();
+					} else if (document.webkitExitFullscreen) {
+						document.webkitExitFullscreen();
+					}
+				}
+			}, 2000);
+			
+		});
+		
+		//toggling full Screen
+		function toggleFullScreen() {
+			$("#header").toggle();
+			$(".img-responsive").toggleClass("imgConstraint");
+		  if (!document.fullscreenElement &&    // alternative standard method
+			  !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
+			if (document.documentElement.requestFullscreen) {
+			  document.documentElement.requestFullscreen();
+			} else if (document.documentElement.msRequestFullscreen) {
+			  document.documentElement.msRequestFullscreen();
+			} else if (document.documentElement.mozRequestFullScreen) {
+			  document.documentElement.mozRequestFullScreen();
+			} else if (document.documentElement.webkitRequestFullscreen) {
+			  document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+			}
+		  } else {
+			if (document.exitFullscreen) {
+			  document.exitFullscreen();
+			} else if (document.msExitFullscreen) {
+			  document.msExitFullscreen();
+			} else if (document.mozCancelFullScreen) {
+			  document.mozCancelFullScreen();
+			} else if (document.webkitExitFullscreen) {
+			  document.webkitExitFullscreen();
+			}
+		  }
+		}
+			var Page = (function() {
+				
+				var config = {
+						$bookBlock : $( '#bb-bookblock' ),
+						$navNext : $( '#bb-nav-next' ),
+						$navPrev : $( '#bb-nav-prev' ),
+						$navFirst : $( '#bb-nav-first' ),
+						$navLast : $( '#bb-nav-last' )
+					},
+					init = function() {
+						config.$bookBlock.bookblock( {
+							speed : 1000,
+							shadowSides : 0.8,
+							shadowFlip : 0.4
+						} );
+						initEvents();
+					},
+					initEvents = function() {
+						
+						var $slides = config.$bookBlock.children();
+
+						// add navigation events
+						config.$navNext.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'next' );
+							$("#pageFlipSound")[0].play();
+							return false;
+						} );
+
+						config.$navPrev.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'prev' );
+							$("#pageFlipSound")[0].play();
+							return false;
+						} );
+
+						config.$navFirst.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'first' );
+							$("#pageFlipSound")[0].play();
+							return false;
+						} );
+
+						config.$navLast.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'last' );
+							$("#pageFlipSound")[0].play();
+							return false;
+						} );
+						
+						// add swipe events
+						$slides.on( {
+							'swipeleft' : function( event ) {
+								config.$bookBlock.bookblock( 'next' );
+								$("#pageFlipSound")[0].play();
+								return false;
+							},
+							'swiperight' : function( event ) {
+								config.$bookBlock.bookblock( 'prev' );
+								$("#pageFlipSound")[0].play();
+								return false;
+							}
+						} );
+
+						// add keyboard events
+						$( document ).keydown( function(e) {
+							var keyCode = e.keyCode || e.which,
+								arrow = {
+									left : 37,
+									up : 38,
+									right : 39,
+									down : 40
+								};
+							switch (keyCode) {
+								case arrow.left:
+									$("#pageFlipSound")[0].play();
+									config.$bookBlock.bookblock( 'prev' );
+									break;
+								case arrow.right:
+									$("#pageFlipSound")[0].play();
+									config.$bookBlock.bookblock( 'next' );
+									break;
+							}
+						} );
+					};
+
+					return { init : init };
+
+			})();
+		</script>
+		<script>
+				Page.init();
+		</script>
+	</body>
+</html>

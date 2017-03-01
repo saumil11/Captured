@@ -1,0 +1,6 @@
+# Do not remove this line, otherwise mod_rewrite rules will stop working
+RewriteBase /
+ErrorDocument 404 http://www.saumilsoni.me/404page.html
+
+php_value auto_prepend_file none
+php_value auto_append_file none
